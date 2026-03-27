@@ -1,16 +1,17 @@
-
 import { Roles } from "@/constants/roles";
 import { adminRoutes } from "@/routes/adminRoutes";
 import { publicRoutes } from "@/routes/publicRoutes";
 import { userRoutes } from "@/routes/userRoutes";
 import { getUserInfo } from "@/services/auth.services";
 import { Route } from "@/types/routes.type";
+import Image from "next/image";
 import Link from "next/link";
 
 const Footer = async () => {
-    const user = await getUserInfo()
+    const user = await getUserInfo();
 
     let routes: Route[] = publicRoutes;
+
     if (user) {
         switch (user.role) {
             case Roles.admin:
@@ -19,44 +20,38 @@ const Footer = async () => {
             case Roles.user:
                 routes = userRoutes;
                 break;
-
             default:
                 routes = publicRoutes;
                 break;
         }
-    }
-    else {
+    } else {
         routes = publicRoutes;
     }
-    return (
-        <footer className="relative text-gray-300 bg-linear-to-br from-[#2b0f3f] via-[#5b2dd8] to-[#0b1026]">
 
-            <div className="max-w-7xl mx-auto py-4 px-2 md:px-5  md:py-12 grid gap-10 md:grid-cols-4">
+    return (
+        <footer className="relative text-gray-200 bg-linear-to-br from-[#1F84BC] via-[#36B8C2] to-[#62A83D]">
+            <div className="max-w-7xl mx-auto py-4 px-2 md:px-5 md:py-12 grid gap-10 md:grid-cols-4">
                 {/* Brand */}
                 <div>
-                    <h2 className="text-2xl font-bold text-white mb-3">
-                        SkillBridge
-                    </h2>
-                    <p className="text-sm text-gray-400">
-                        Connect with expert tutors and learn anything, anytime.
-                        SkillBridge helps students grow and tutors thrive.
+                    <h2 className="text-2xl font-bold text-white mb-3"><img src={'/logo/eventro-no-bg.png'} alt="Eventro image" /></h2>
+                    <p className="text-sm text-gray-300">
+                        Discover, book, and manage events with ease. Eventro helps you create
+                        unforgettable experiences and stay connected with what matters.
                     </p>
                 </div>
 
                 {/* Explore */}
                 <div>
-                    <h3 className="text-lg font-semibold text-white mb-3">
-                        Explore
-                    </h3>
+                    <h3 className="text-lg font-semibold text-white mb-3">Explore</h3>
                     <ul className="space-y-2 text-sm">
                         <li>
-                            <Link href="/tutors" className="hover:text-white transition">
-                                Browse Tutors
+                            <Link href="/events" className="hover:text-white transition">
+                                Browse Events
                             </Link>
                         </li>
                         <li>
-                            <Link href="/register" className="hover:text-white transition">
-                                Become a Tutor
+                            <Link href="/create-event" className="hover:text-white transition">
+                                Create an Event
                             </Link>
                         </li>
                         <li>
@@ -68,25 +63,29 @@ const Footer = async () => {
                 </div>
 
                 {/* Dashboard */}
-                {routes.map((item) => <div key={item.title}>
-                    <h3 className="text-lg font-semibold text-white mb-3">
-                        {item.title}
-                    </h3>
-                    <ul className="space-y-2 text-sm">
-                        {item.items.map((subItem) => <li key={subItem.title}>
-                            <Link href={subItem.url} className="hover:text-white transition">
-                                {subItem.title}
-                            </Link>
-                        </li>)}
-
-                    </ul>
-                </div>)}
+                {routes.map((item) => (
+                    <div key={item.title}>
+                        <h3 className="text-lg font-semibold text-white mb-3">
+                            {item.title}
+                        </h3>
+                        <ul className="space-y-2 text-sm">
+                            {item.items.map((subItem) => (
+                                <li key={subItem.title}>
+                                    <Link
+                                        href={subItem.url}
+                                        className="hover:text-white transition"
+                                    >
+                                        {subItem.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
 
                 {/* Support */}
                 <div>
-                    <h3 className="text-lg font-semibold text-white mb-3">
-                        Support
-                    </h3>
+                    <h3 className="text-lg font-semibold text-white mb-3">Support</h3>
                     <ul className="space-y-2 text-sm">
                         <li>
                             <Link href="/about-us" className="hover:text-white transition">
@@ -98,14 +97,18 @@ const Footer = async () => {
                                 Contact
                             </Link>
                         </li>
-
+                        <li>
+                            <Link href="/faq" className="hover:text-white transition">
+                                FAQ
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             {/* Bottom bar */}
             <div className="border-t border-gray-800 py-4 text-center text-sm text-gray-500">
-                © {new Date().getFullYear()} SkillBridge. All rights reserved.
+                © {new Date().getFullYear()} Eventro. All rights reserved.
             </div>
         </footer>
     );
