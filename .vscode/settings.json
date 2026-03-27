@@ -18,5 +18,8 @@
         "titleBar.inactiveBackground": "#22222299",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#222222"
+    "peacock.color": "#222222",
+    "cSpell.words": [
+        "eventro"
+    ]
 }
