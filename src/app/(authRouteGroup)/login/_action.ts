@@ -2,15 +2,14 @@
 
 import { httpClient } from "@/lib/axios/httpClient";
 import { setTokenInCookies } from "@/lib/tokenUtils";
-import { ApiErrorResponse } from "@/types/api.types";
+import { ApiErrorResponse, ApiResponse } from "@/types/api.types";
 import { ILoginResponse } from "@/types/auth.types";
 import { ILoginPayload, loginZodSchema } from "@/zod/auth.validation";
 import { redirect } from "next/navigation";
 
 export const loginAction = async (
     payload: ILoginPayload,
-    redirectPath?: string,
-): Promise<ILoginResponse | ApiErrorResponse> => {
+): Promise<ApiResponse<ILoginResponse> | ApiErrorResponse> => {
     const parsedPayload = loginZodSchema.safeParse(payload);
 
     if (!parsedPayload.success) {
@@ -41,15 +40,7 @@ export const loginAction = async (
 
         await setTokenInCookies("user", JSON.stringify(user));
 
-        // Force password reset
-        if (needPasswordChange) {
-            redirect(`/reset-password?email=${email}`);
-        }
-
-        // Role based redirect validation
-        const targetPath = redirectPath ? redirectPath : "/";
-
-        redirect(targetPath);
+        return response;
     } catch (error: any) {
         /**
          * IMPORTANT:

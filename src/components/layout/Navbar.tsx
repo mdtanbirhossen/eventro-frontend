@@ -27,9 +27,10 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ProfileDropdown } from "./ProfileDropdown";
 import { Role } from "@/types/role.types";
-import { getUserInfo, logoutUser } from "@/services/auth.services";
+import {  logoutUser } from "@/services/auth.services";
 import LogoutButton from "../modules/logout/LogoutButton";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/context/AuthContext";
 
 interface MenuItem {
   title: string;
@@ -64,9 +65,9 @@ interface Navbar1Props {
 const Navbar = ({
   logo = {
     url: "/",
-    src: "/logo.png",
+    src: "/logo/eventro-no-bg.png",
     alt: "logo",
-    title: "/skill-bridge.png",
+    title: "/logo/eventro-no-bg.png",
   },
   menu = [
     { title: "Home", url: "/" },
@@ -94,10 +95,7 @@ const Navbar = ({
 
   const pathname = usePathname();
 
-  const { data: userInfo, isLoading, isFetching } = useQuery({
-    queryKey: ["user-info"],
-    queryFn: () => getUserInfo()
-  });
+  const { user: userInfo, logout } = useAuth()
   // console.log("navbar user info", userInfo)
   if (userInfo) {
     menu.push({
@@ -108,6 +106,7 @@ const Navbar = ({
   // console.log("from auth context", userInfo)
   const handleLogout = async () => {
     await logoutUser();
+    logout()
     router.refresh();
   };
   return (

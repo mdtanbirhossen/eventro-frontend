@@ -6,48 +6,58 @@ import AppSubmitButton from "@/components/shared/form/AppSubmitButton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/context/AuthContext";
 import { ILoginPayload, loginZodSchema } from "@/zod/auth.validation";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface LoginFormProps {
-    redirectPath ?: string;
+  redirectPath?: string;
 }
 
 const LoginForm = ({ redirectPath }: LoginFormProps) => {
-    // const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
+  const { login } = useAuth()
+  const router = useRouter();
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
-    const [serverError, setServerError] = useState<string | null>(null);
-    const [showPassword, setShowPassword] = useState(false);
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: (payload: ILoginPayload) => loginAction(payload),
+  })
 
-    const { mutateAsync , isPending} = useMutation({
-        mutationFn : (payload : ILoginPayload) => loginAction(payload, redirectPath),
-    })
+  const form = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
 
-    const form = useForm({
-        defaultValues : {
-            email : "",
-            password : "",
-        },
-
-        onSubmit : async ({value}) => {
-            setServerError(null);
-            try {
-                const result = await mutateAsync(value) as any;
-
-                if(!result.success ) {
-                    setServerError(result.message || "Login failed");
-                    return ;
-                }
-            } catch (error : any) {
-                console.log(`Login failed: ${error.message}`);
-                setServerError(`Login failed: ${error.message}`);
-            }
+    onSubmit: async ({ value }) => {
+      setServerError(null);
+      try {
+        const result = await mutateAsync(value) as any;
+        if (!result.success) {
+          setServerError(result.message || "Login failed");
+          return;
         }
-    })
+        console.log(result)
+        login(result?.data?.user, result?.data?.accessToken)
+        const targetPath = redirectPath ? redirectPath : "/";
+        router.push(targetPath)
+
+        toast.success(result.message)
+
+      } catch (error: any) {
+        console.log(`Login failed: ${error.message}`);
+        setServerError(`Login failed: ${error.message}`);
+      }
+    }
+  })
   return (
     <Card className="w-full max-w-md mx-auto shadow-md">
       <CardHeader className="text-center">
@@ -98,7 +108,7 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
                 className="cursor-pointer"
                 append={
                   <Button
-                  type="button"
+                    type="button"
                     onClick={() => setShowPassword((value) => !value)}
                     variant="ghost"
                     size="icon"
@@ -152,9 +162,9 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
         </div>
 
         <Button variant="outline" className="w-full" onClick={() => {
-            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            //TODO redirect path after login in frontend
-            window.location.href = `${baseUrl}/auth/login/google`;
+          const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+          //TODO redirect path after login in frontend
+          window.location.href = `${baseUrl}/auth/login/google`;
         }}>
           <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
             <path
@@ -180,13 +190,13 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
 
       <CardFooter className="justify-center border-t pt-4">
         <p className="text-sm text-muted-foreground">
-              Don&apos;t have an account?{" "}
-            <Link
-                href="/register"
-                className="text-primary font-medium hover:underline underline-offset-4"
-            >
-                Sign Up for an account
-            </Link>
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/register"
+            className="text-primary font-medium hover:underline underline-offset-4"
+          >
+            Sign Up for an account
+          </Link>
         </p>
       </CardFooter>
     </Card>
