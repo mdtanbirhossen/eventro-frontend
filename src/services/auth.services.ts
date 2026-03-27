@@ -126,6 +126,7 @@ export async function logoutUser(): Promise<boolean> {
         cookieStore.delete("accessToken");
         cookieStore.delete("refreshToken");
         cookieStore.delete("better-auth.session_token");
+        cookieStore.delete("user");
 
         if (!res.ok) {
             return false;
