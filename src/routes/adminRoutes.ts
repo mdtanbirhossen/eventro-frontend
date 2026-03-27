@@ -1,30 +1,37 @@
 import { Route } from "@/types/routes.type";
-import { BookA, LayoutDashboard, ListStart, User } from "lucide-react";
+import {
+    LayoutDashboard,
+    Users,
+    CalendarPlus,
+    CalendarDays,
+    CreditCard,
+    Settings,
+    ClipboardList,
+} from "lucide-react";
 
 export const adminRoutes: Route[] = [
-  {
-    title: "Admin Management",
-    items: [
-      {
-        title: "Dashboard",
-        url: "/admin",
-        icon: LayoutDashboard
-      },
-      {
-        title: "Users",
-        url: "/admin/users",
-        icon: User
-      },
-      {
-        title: "Bookings",
-        url: "/admin/bookings",
-        icon: ListStart
-      },
-      {
-        title: "Categories",
-        url: "/admin/categories",
-        icon: BookA
-      },
-    ],
-  },
+    {
+        title: "Admin Panel",
+        items: [
+            { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
+            {
+                title: "Manage Events",
+                url: "/admin/events",
+                icon: CalendarDays,
+            },
+            {
+                title: "Create Event",
+                url: "/admin/events/create",
+                icon: CalendarPlus,
+            },
+            { title: "Manage Users", url: "/admin/users", icon: Users },
+            {
+                title: "Manage Bookings",
+                url: "/admin/bookings",
+                icon: ClipboardList,
+            },
+            { title: "Payments", url: "/admin/payments", icon: CreditCard },
+            { title: "Settings", url: "/admin/settings", icon: Settings },
+        ],
+    },
 ];
