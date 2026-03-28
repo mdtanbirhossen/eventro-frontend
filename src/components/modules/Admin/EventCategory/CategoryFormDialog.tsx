@@ -42,7 +42,7 @@ export default function CategoryFormDialog({
             defaultValues: {
                 name: category?.name ?? "",
                 description: category?.description ?? "",
-            },
+            } satisfies CategoryFormValues,
             onSubmit: async ({ value }) => {
                 const result = categorySchema.safeParse(value);
                 if (!result.success) return;
