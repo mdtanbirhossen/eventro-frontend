@@ -26,11 +26,11 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ProfileDropdown } from "./ProfileDropdown";
-import { Role } from "@/types/role.types";
 import {  logoutUser } from "@/services/auth.services";
 import LogoutButton from "../modules/logout/LogoutButton";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/context/AuthContext";
+import { Role } from "@/types/enums";
 
 interface MenuItem {
   title: string;
