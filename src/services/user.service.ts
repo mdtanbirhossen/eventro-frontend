@@ -14,7 +14,7 @@ export async function getAllUsers(params?: {
 }): Promise<ApiResponse<{ data: IAdmin[]; meta: unknown }> | ApiErrorResponse> {
   try {
     const response = await httpClient.get<{ data: IAdmin[]; meta: unknown }>(
-      "/api/v1/users",
+      "/users",
       { params }
     );
     return response;

@@ -14,7 +14,7 @@ export async function getAdminAllPayments(): Promise<
 > {
   try {
     const response =
-      await httpClient.get<IAdminPaymentListResponse>("/payment/my");
+      await httpClient.get<IAdminPaymentListResponse>("/payment");
     return response;
   } catch (error) {
     return handleError(error, "Failed to fetch payments.");

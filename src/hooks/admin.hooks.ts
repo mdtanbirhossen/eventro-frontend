@@ -141,8 +141,9 @@ export function useAdminEvents(params?: IAdminEventQueryParams) {
     queryKey: adminQueryKeys.adminEvents(params),
     queryFn: async () => {
       const res = await getAdminAllEvents(params);
+      console.log(res)
       if (!res.success) throw new Error(res.message);
-      return res.data;
+      return res;
     },
     placeholderData: keepPreviousData,
   });
@@ -374,6 +375,7 @@ export function useAdminPayments() {
     queryKey: adminQueryKeys.adminPayments,
     queryFn: async () => {
       const res = await getAdminAllPayments();
+      console.log(res)
       if (!res.success) throw new Error(res.message);
       return res.data;
     },

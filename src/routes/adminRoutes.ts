@@ -25,6 +25,7 @@ export const adminRoutes: Route[] = [
                 icon: CalendarPlus,
             },
             { title: "Manage Users", url: "/admin/users", icon: Users },
+            { title: "Manage Categories", url: "/admin/categories", icon: Users },
             {
                 title: "Manage Bookings",
                 url: "/admin/bookings",
