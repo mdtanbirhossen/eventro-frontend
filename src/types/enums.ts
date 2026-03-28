@@ -1,0 +1,75 @@
+
+export enum Role {
+  ADMIN = "ADMIN",
+  USER = "USER",
+}
+ 
+export enum UserStatus {
+  ACTIVE = "ACTIVE",
+  BLOCKED = "BLOCKED",
+  DELETED = "DELETED",
+}
+ 
+export enum Gender {
+  MALE = "MALE",
+  FEMALE = "FEMALE",
+  OTHER = "OTHER",
+}
+ 
+export enum EventVisibility {
+  PUBLIC = "PUBLIC",
+  PRIVATE = "PRIVATE",
+}
+ 
+export enum EventFeeType {
+  FREE = "FREE",
+  PAID = "PAID",
+}
+ 
+export enum EventStatus {
+  DRAFT = "DRAFT",
+  PUBLISHED = "PUBLISHED",
+  CANCELLED = "CANCELLED",
+  COMPLETED = "COMPLETED",
+}
+ 
+export enum ParticipantStatus {
+  PENDING = "PENDING",
+  APPROVED = "APPROVED",
+  REJECTED = "REJECTED",
+  BANNED = "BANNED",
+}
+ 
+export enum InvitationStatus {
+  PENDING = "PENDING",
+  ACCEPTED = "ACCEPTED",
+  DECLINED = "DECLINED",
+}
+ 
+export enum PaymentStatus {
+  UNPAID = "UNPAID",
+  PAID = "PAID",
+  CANCELLED = "CANCELLED",
+  REFUNDED = "REFUNDED",
+  FAILED = "FAILED",
+}
+ 
+export enum PaymentProvider {
+  STRIPE = "STRIPE",
+  SSLCOMMERZ = "SSLCOMMERZ",
+}
+ 
+export enum NotificationType {
+  JOIN_REQUEST = "JOIN_REQUEST",
+  REQUEST_APPROVED = "REQUEST_APPROVED",
+  REQUEST_REJECTED = "REQUEST_REJECTED",
+  INVITATION_RECEIVED = "INVITATION_RECEIVED",
+  INVITATION_DECLINED = "INVITATION_DECLINED",
+  INVITATION_ACCEPTED = "INVITATION_ACCEPTED",
+  PARTICIPANT_BANNED = "PARTICIPANT_BANNED",
+  PAYMENT_SUCCESS = "PAYMENT_SUCCESS",
+  PAYMENT_FAILED = "PAYMENT_FAILED",
+  EVENT_UPDATED = "EVENT_UPDATED",
+  EVENT_CANCELLED = "EVENT_CANCELLED",
+  REVIEW_RECEIVED = "REVIEW_RECEIVED",
+}
