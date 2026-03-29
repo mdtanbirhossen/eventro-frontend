@@ -1,8 +1,9 @@
 
 const UserDashboardPage = async () => {
 
+    
     return (
-        <div className="p-6 space-y-6">
+        <div className="">
             <h1 className="text-2xl font-bold">User Dashboard</h1>
         </div>
     );
