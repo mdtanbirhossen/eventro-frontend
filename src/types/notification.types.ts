@@ -1,5 +1,6 @@
 import { NotificationType } from "./enums";
 
+
 export interface INotification {
   id: string;
   type: NotificationType;
@@ -11,4 +12,3 @@ export interface INotification {
   createdAt: string;
   userId: string;
 }
- 

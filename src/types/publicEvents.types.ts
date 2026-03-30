@@ -92,6 +92,7 @@ export interface IPublicReview {
 // ─── Create Review payload ────────────────────────────────────
 
 export interface ICreateReviewPayload {
+  eventId: string;
   rating: number;
   comment?: string;
 }
