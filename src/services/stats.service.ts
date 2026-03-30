@@ -9,7 +9,7 @@ export async function getAdminDashboardStats(): Promise<
     ApiResponse<IAdminDashboardStats> | ApiErrorResponse
 > {
     try {
-        const response = await httpClient.get<IAdminDashboardStats>("/stats");
+        const response = await httpClient.get<IAdminDashboardStats>("/stats/admin");
         return response;
     } catch (error) {
         return handleError(error, "Failed to fetch dashboard stats.");
