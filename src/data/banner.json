@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "title": "Discover Amazing Events",
+    "description": "Join tech meetups, concerts, workshops, and networking events near you.",
+    "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
+    "redirectUrl": "/events",
+    "position": "MAIN",
+    "positionOrder": 1,
+    "isActive": true,
+    "altText": "Conference event crowd",
+    "buttonText": "Explore Events"
+  },
+  {
+    "id": "2",
+    "title": "Create Your Own Event",
+    "description": "Host events and manage attendees easily with Eventro.",
+    "image": "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1600&q=80",
+    "redirectUrl": "/dashboard/my-events/create",
+    "position": "MAIN",
+    "positionOrder": 2,
+    "isActive": true,
+    "altText": "Event audience and stage",
+    "buttonText": "Create Event"
+  },
+  {
+    "id": "3",
+    "title": "Workshops & Seminars",
+    "description": "Learn new skills with experts.",
+    "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
+    "redirectUrl": "/events?category=workshop",
+    "position": "SECOND",
+    "positionOrder": 1,
+    "isActive": true,
+    "altText": "Workshop seminar session",
+    "buttonText": "Join Now"
+  },
+  {
+    "id": "4",
+    "title": "Networking Events",
+    "description": "Meet professionals and grow your network.",
+    "image": "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=800&q=80",
+    "redirectUrl": "/events?category=networking",
+    "position": "THIRD",
+    "positionOrder": 1,
+    "isActive": true,
+    "altText": "Business networking meetup",
+    "buttonText": "Find Events"
+  }
+]
