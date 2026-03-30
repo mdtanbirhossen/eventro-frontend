@@ -1,25 +1,47 @@
 import { Route } from "@/types/routes.type";
 import {
-    LayoutDashboard,
-    Ticket,
-    CalendarCheck,
-    User,
-    Settings,
+  LayoutDashboard,
+  CalendarDays,
+  CalendarCheck,
+  Mail,
+  CreditCard,
+  Bell,
 } from "lucide-react";
 
 export const userRoutes: Route[] = [
-    {
-        title: "User Dashboard",
-        items: [
-            { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
-            {
-                title: "My Bookings",
-                url: "/dashboard/bookings",
-                icon: CalendarCheck,
-            },
-            { title: "My Tickets", url: "/dashboard/tickets", icon: Ticket },
-            { title: "My Profile", url: "/dashboard/profile", icon: User },
-            { title: "Settings", url: "/dashboard/settings", icon: Settings },
-        ],
-    },
+  {
+    title: "User Dashboard",
+    items: [
+      {
+        title: "Dashboard",
+        url: "/dashboard",
+        icon: LayoutDashboard,
+      },
+      {
+        title: "My Created Events",
+        url: "/dashboard/my-events",
+        icon: CalendarDays,
+      },
+      {
+        title: "My Joined Events",
+        url: "/dashboard/my-joined-events",
+        icon: CalendarCheck,
+      },
+      {
+        title: "My Invitations",
+        url: "/dashboard/my-invitations",
+        icon: Mail,
+      },
+      {
+        title: "My Payments",
+        url: "/dashboard/my-payments",
+        icon: CreditCard,
+      },
+      {
+        title: "My Notifications",
+        url: "/dashboard/notifications",
+        icon: Bell,
+      },
+    ],
+  },
 ];

@@ -7,6 +7,9 @@ import {
     CreditCard,
     Settings,
     ClipboardList,
+    CalendarCheck,
+    Mail,
+    Bell,
 } from "lucide-react";
 
 export const adminRoutes: Route[] = [
@@ -25,7 +28,11 @@ export const adminRoutes: Route[] = [
                 icon: CalendarPlus,
             },
             { title: "Manage Users", url: "/admin/users", icon: Users },
-            { title: "Manage Categories", url: "/admin/categories", icon: Users },
+            {
+                title: "Manage Categories",
+                url: "/admin/categories",
+                icon: Users,
+            },
             {
                 title: "Manage Bookings",
                 url: "/admin/bookings",
@@ -33,6 +40,31 @@ export const adminRoutes: Route[] = [
             },
             { title: "Payments", url: "/admin/payments", icon: CreditCard },
             { title: "Settings", url: "/admin/settings", icon: Settings },
+            {
+                title: "My Created Events",
+                url: "/admin/my-events",
+                icon: CalendarDays,
+            },
+            {
+                title: "My Joined Events",
+                url: "/admin/my-joined-events",
+                icon: CalendarCheck,
+            },
+            {
+                title: "My Invitations",
+                url: "/admin/my-invitations",
+                icon: Mail,
+            },
+            {
+                title: "My Payments",
+                url: "/admin/my-payments",
+                icon: CreditCard,
+            },
+            {
+                title: "My Notifications",
+                url: "/admin/notifications",
+                icon: Bell,
+            },
         ],
     },
 ];
