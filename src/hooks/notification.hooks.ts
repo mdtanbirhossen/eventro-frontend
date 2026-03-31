@@ -14,7 +14,7 @@ export function useMyNotifications() {
         queryFn: async () => {
             const res = await getMyNotificationsAction();
             if (!res.success) throw new Error(res.message);
-            console.log("Fetched notifications:", res.data);
+            // console.log("Fetched notifications:", res.data);
             return (res.data ?? []) as INotification[];
         },
         // poll every 30s so new notifications appear without refresh

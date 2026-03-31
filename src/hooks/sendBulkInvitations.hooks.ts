@@ -33,7 +33,7 @@ export function useSearchUsers(params?: ISearchUsersParams) {
     queryKey: bulkInvitationsQueryKeys.search(params),
     queryFn: async () => {
       const res = await searchUsersAction(params);
-      console.log("Search Users Result in Hook:", res);
+      // console.log("Search Users Result in Hook:", res);
       if (!res.success) throw new Error(res.message);
       return (res.data ?? []) as IUserForInvitation[];
     },
@@ -69,7 +69,7 @@ export function useSendBulkInvitations(eventId: string) {
   return useMutation({
     mutationFn: async (payload: ISendBulkInvitationsPayload) => {
       const res = await sendBulkInvitationsAction(eventId, payload);
-      console.log("Send Bulk Invitations Result in Hook:", res);
+      // console.log("Send Bulk Invitations Result in Hook:", res);
       if (!res.success) throw new Error(res.message);
       return res.data;
     },

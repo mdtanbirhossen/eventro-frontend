@@ -51,7 +51,7 @@ export async function searchUsersAction(
         params: params as Record<string, unknown>,
       }
     );
-    console.log("Search Users Response:", response);
+    // console.log("Search Users Response:", response);
     return response;
   } catch (error) {
     return handleError(error, "Failed to search users.");

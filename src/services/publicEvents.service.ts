@@ -75,7 +75,7 @@ export async function getFeaturedEventAction(): Promise<
   try {
     const response =
       await httpClient.get<IPublicEvent>("/events/featured");
-      console.log(response.data)
+      // console.log(response.data)
     return response;
   } catch (error) {
     return handleError(error, "Failed to fetch featured event.");
@@ -145,7 +145,7 @@ export async function createReviewAction(
       `/reviews`,
       payload
     );
-    console.log("Create review response:", response);
+    // console.log("Create review response:", response);
     return response;
   } catch (error) {
     return handleError(error, "Failed to submit review.");

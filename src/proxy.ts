@@ -6,10 +6,10 @@ import { getNewTokensWithRefreshToken } from "./services/auth.services";
 import { UserRole } from "./types/role.types";
 
 async function refreshTokenMiddleware(refreshToken: string): Promise<boolean> {
-    console.log(refreshToken);
+    // console.log(refreshToken);
     try {
         const refresh = await getNewTokensWithRefreshToken(refreshToken);
-        console.log(refresh);
+        // console.log(refresh);
         if (!refresh) return false;
 
         return true;

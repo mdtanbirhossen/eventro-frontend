@@ -42,7 +42,7 @@ export function useEventCategories() {
     queryKey: eventFormQueryKeys.categories,
     queryFn: async () => {
       const res = await getEventCategoriesAction();
-      console.log("Fetched categories:", res);
+      // console.log("Fetched categories:", res);
       if (!res.success) throw new Error(res.message);
       return (res.data ?? []) as IEventCategory[];
     },

@@ -18,7 +18,7 @@ export async function getMyNotificationsAction(): Promise<
     try {
         const response =
             await httpClient.get<INotification[]>("/notifications");
-            console.log(response)
+            // console.log(response)
         return response;
     } catch (error) {
         return handleError(error, "Failed to fetch notifications.");

@@ -90,7 +90,7 @@ export function useFeaturedPublicEvent() {
         queryFn: async () => {
             const res = await getFeaturedEventAction();
             if (!res.success) throw new Error(res.message);
-            console.log(res);
+            // console.log(res);
             return res;
         },
         staleTime: 5 * 60 * 1000, // 5 min — featured rarely changes
@@ -189,7 +189,7 @@ export function useEventReviews(eventId: string) {
         queryKey: publicEventsQueryKeys.reviews(eventId),
         queryFn: async () => {
             const res = await getEventReviewsAction(eventId);
-            console.log("Reviews response:", res);
+            // console.log("Reviews response:", res);
             if (!res.success) throw new Error(res.message);
             return (res.data ?? []) as IPublicReview[];
         },

@@ -199,7 +199,7 @@ export default function EventForm({
 }: EventFormProps) {
   const { data: categories, isLoading: categoriesLoading } =
     useEventCategories();
-  console.log("EventForm categories:", categories, "loading:", categoriesLoading);
+  // console.log("EventForm categories:", categories, "loading:", categoriesLoading);
 
   // ── Build default values from initialData if editing ──
   const defaultValues: IEventFormValues = initialData

@@ -230,7 +230,7 @@ export default function NotificationsPage() {
   const [page, setPage] = useState(1);
 
   const { data, isLoading, isError } = useMyNotifications();
-  console.log(data)
+  // console.log(data)
   const notifications = Array.isArray(data) ? data : [];
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;

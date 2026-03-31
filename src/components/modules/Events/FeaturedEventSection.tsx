@@ -33,12 +33,12 @@ function FeaturedSkeleton() {
 
 export default function FeaturedEventSection({ className }: { className?: string }) {
   const { data, isLoading, isError } = useFeaturedPublicEvent();
-  console.log(data)
+  // console.log(data)
   if (isLoading) return <FeaturedSkeleton />;
   if (isError || !data?.data) return null;
 
   const event = data?.data;
-  console.log(event)
+  // console.log(event)
   return (
     <div className={`relative rounded-2xl overflow-hidden border bg-card group ${className}`}>
       {/* Banner */}

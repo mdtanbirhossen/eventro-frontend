@@ -45,7 +45,7 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
           setServerError(result.message || "Login failed");
           return;
         }
-        console.log(result)
+        // console.log(result)
         login(result?.data?.user, result?.data?.accessToken)
         const targetPath = redirectPath ? redirectPath : "/";
         router.push(targetPath)
@@ -53,7 +53,7 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
         toast.success(result.message)
 
       } catch (error: any) {
-        console.log(`Login failed: ${error.message}`);
+        // console.log(`Login failed: ${error.message}`);
         setServerError(`Login failed: ${error.message}`);
       }
     }
