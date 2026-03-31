@@ -1,10 +1,11 @@
+import UserDashboard from "@/components/modules/User/UserDashboard/UserDashboard";
 
 const UserDashboardPage = async () => {
 
-    
+
     return (
         <div className="">
-            <h1 className="text-2xl font-bold">User Dashboard</h1>
+            <UserDashboard />
         </div>
     );
 };

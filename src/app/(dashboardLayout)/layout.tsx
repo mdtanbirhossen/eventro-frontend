@@ -6,7 +6,7 @@ import {
     SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Roles } from "@/constants/roles";
-import { getUserInfo } from "@/services/auth.services";
+import { getUserFromToken,  } from "@/services/auth.services";
 import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
@@ -18,7 +18,7 @@ export default async function DashboardLayout({
     user: React.ReactNode;
 }) {
 
-    const userInfo = await getUserInfo();
+    const userInfo = await getUserFromToken();
     if (!userInfo) {
         redirect("/login?reason=auth");
     }
