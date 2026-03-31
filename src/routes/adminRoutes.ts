@@ -10,6 +10,7 @@ import {
     CalendarCheck,
     Mail,
     Bell,
+    User,
 } from "lucide-react";
 
 export const adminRoutes: Route[] = [
@@ -39,7 +40,6 @@ export const adminRoutes: Route[] = [
                 icon: ClipboardList,
             },
             { title: "Payments", url: "/admin/payments", icon: CreditCard },
-            { title: "Settings", url: "/admin/settings", icon: Settings },
             {
                 title: "My Created Events",
                 url: "/admin/my-events",
@@ -64,6 +64,11 @@ export const adminRoutes: Route[] = [
                 title: "My Notifications",
                 url: "/admin/notifications",
                 icon: Bell,
+            },
+            {
+                title: "Settings",
+                url: "/admin/settings",
+                icon: User,
             },
         ],
     },

@@ -6,6 +6,7 @@ import {
   Mail,
   CreditCard,
   Bell,
+  User,
 } from "lucide-react";
 
 export const userRoutes: Route[] = [
@@ -41,6 +42,11 @@ export const userRoutes: Route[] = [
         title: "My Notifications",
         url: "/dashboard/notifications",
         icon: Bell,
+      },
+      {
+        title: "Settings",
+        url: "/dashboard/settings",
+        icon: User,
       },
     ],
   },
