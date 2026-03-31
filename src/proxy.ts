@@ -28,8 +28,6 @@ export async function proxy(request: NextRequest) {
         const accessToken = request.cookies.get("accessToken")?.value;
         // Get refresh token from cookies
         const refreshToken = request.cookies.get("refreshToken")?.value;
-        console.log("token from proxy",accessToken);
-        console.log("token from proxy",refreshToken);
         // Verify the access token
         const verifyAccessToken = accessToken
             ? jwtUtils.verifyToken(
@@ -48,7 +46,9 @@ export async function proxy(request: NextRequest) {
             ? (decodedAccessToken?.role as UserRole)
             : null;
 
-        console.log("role from proxy", role);
+        // console.log("token from proxy", accessToken);
+        // console.log("token from proxy", refreshToken);
+        // console.log("role from proxy", role);
         const isAdmin = role === "ADMIN";
         const isUser = role === "USER";
 
