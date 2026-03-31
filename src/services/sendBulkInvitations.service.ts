@@ -27,7 +27,7 @@ export async function sendBulkInvitationsAction(
 ): Promise<ApiResponse<ISendBulkInvitationsResponse> | ApiErrorResponse> {
   try {
     const response = await httpClient.post<ISendBulkInvitationsResponse>(
-      `/events/${eventId}/invite`,
+      `/events/${eventId}/bulk-invite`,
       payload
     );
     return response;
@@ -46,7 +46,7 @@ export async function searchUsersAction(
 ): Promise<ApiResponse<IUserForInvitation[]> | ApiErrorResponse> {
   try {
     const response = await httpClient.get<IUserForInvitation[]>(
-      "/users",
+      "/users/search",
       {
         params: params as Record<string, unknown>,
       }

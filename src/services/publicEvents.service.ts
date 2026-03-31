@@ -92,7 +92,7 @@ export async function getPublicCategoriesAction(): Promise<
 > {
   try {
     const response =
-      await httpClient.get<IPublicCategory[]>("/events/categories");
+      await httpClient.get<IPublicCategory[]>("/event-categories");
     return response;
   } catch (error) {
     return handleError(error, "Failed to fetch categories.");
