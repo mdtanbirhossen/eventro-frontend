@@ -6,10 +6,10 @@ import { getNewTokensWithRefreshToken } from "./services/auth.services";
 import { UserRole } from "./types/role.types";
 
 async function refreshTokenMiddleware(refreshToken: string): Promise<boolean> {
-    console.log(refreshToken)
+    console.log(refreshToken);
     try {
         const refresh = await getNewTokensWithRefreshToken(refreshToken);
-console.log(refresh)
+        console.log(refresh);
         if (!refresh) return false;
 
         return true;
@@ -81,13 +81,30 @@ export async function proxy(request: NextRequest) {
             return response;
         }
 
+        //     if (isAdmin && pathname.startsWith("/dashboard")) {
+        //       return NextResponse.redirect(new URL("/admin-dashboard", request.url));
+        //  }
+
+        //  //  User trying to access admin dashboard
+        //  if (isUser && pathname.startsWith("/admin-dashboard")) {
+        //       return NextResponse.redirect(new URL("/dashboard", request.url));
+        //  }
+
+        //  //  Unauthenticated user
+        //  if (
+        //       !role &&
+        //       (pathname.startsWith("/admin-dashboard") || pathname.startsWith("/dashboard"))
+        //  ) {
+        //       return NextResponse.redirect(new URL("/", request.url));
+        //  }
+
         // Redirect ADMIN from /dashboard to /admin-dashboard
         if (isAdmin && pathname.startsWith("/dashboard")) {
             return NextResponse.redirect(new URL("/admin", request.url));
         }
 
         // Redirect USER from /admin-dashboard to /dashboard
-        if (isUser && pathname.startsWith("/admin-dashboard")) {
+        if (isUser && pathname.startsWith("/admin")) {
             return NextResponse.redirect(new URL("/dashboard", request.url));
         }
 
