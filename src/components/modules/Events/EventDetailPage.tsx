@@ -343,7 +343,7 @@ export default function EventDetailPage() {
   const [showReviewForm, setShowReviewForm] = useState(false);
 
   const { data: event, isLoading, isError } = usePublicEventBySlug(slug);
-  console.log(event)
+  // console.log(event)
   const { data: reviews, isLoading: reviewsLoading } = useEventReviews(
     event?.id ?? ""
   );

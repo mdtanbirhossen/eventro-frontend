@@ -34,7 +34,7 @@ import DeleteCategoryDialog from "./DeleteCategoryDialog";
 
 export default function CategoriesManagementPage() {
   const { data: categories, isLoading, isError } = useCategories();
-    console.log("categories fro categories management page", categories)
+    // console.log("categories fro categories management page", categories)
   const [search, setSearch] = useState("");
   const [formOpen, setFormOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
