@@ -93,7 +93,7 @@ export default function UsersManagement() {
             setRoleFilter(v as "ALL" | "ADMIN" | "USER")
           }
         >
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-35">
             <SelectValue placeholder="Filter by role" />
           </SelectTrigger>
           <SelectContent>
@@ -110,9 +110,9 @@ export default function UsersManagement() {
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead>User</TableHead>
-              <TableHead className="w-[100px]">Role</TableHead>
-              <TableHead className="w-[110px]">Status</TableHead>
-              <TableHead className="w-[160px]">Joined</TableHead>
+              <TableHead className="w-25">Role</TableHead>
+              <TableHead className="w-27.5">Status</TableHead>
+              <TableHead className="w-40">Joined</TableHead>
             </TableRow>
           </TableHeader>
  
