@@ -59,7 +59,7 @@ export default function PublicEventsPage() {
     limit: LIMIT,
     search: search || undefined,
     feeType: feeType !== "ALL" ? feeType : undefined,
-    visibility: visibility !== "ALL" ? visibility : undefined,
+    visibility: EventVisibility.PUBLIC,
     categoryId: categoryId !== "ALL" ? categoryId : undefined,
     status: EventStatus.PUBLISHED as const,
     sortBy,
@@ -190,23 +190,6 @@ export default function PublicEventsPage() {
               </Select>
             </div>
 
-            {/* Visibility */}
-            <div className="space-y-1.5">
-              <p className="text-xs font-medium text-muted-foreground">Visibility</p>
-              <Select
-                value={visibility}
-                onValueChange={(v) => { setVisibility(v as "ALL" | EventVisibility); setPage(1); }}
-              >
-                <SelectTrigger className="w-35">
-                  <SelectValue placeholder="Any" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL">Any</SelectItem>
-                  <SelectItem value={EventVisibility.PUBLIC}>Public</SelectItem>
-                  <SelectItem value={EventVisibility.PRIVATE}>Private</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
 
             {/* Sort */}
             <div className="space-y-1.5">

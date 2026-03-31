@@ -1,3 +1,5 @@
+import { Role } from "./user.types";
+
 export interface ILoginResponse {
     token : string;
     accessToken : string;
@@ -12,4 +14,14 @@ export interface ILoginResponse {
         isDeleted : boolean;
         emailVerified : boolean;
     }
+}
+
+export interface JwtUserPayload {
+  id: string;
+  email: string;
+  name: string;
+  role: Role;
+  status: string;
+  iat: number;
+  exp: number;
 }

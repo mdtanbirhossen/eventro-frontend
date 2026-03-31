@@ -484,14 +484,14 @@ export default function EventDetailPage() {
                 <div className="min-w-0">
                   <p className="text-xs text-muted-foreground">{label}</p>
                   {isLink ? (
-                    <a
+                    <Link
                       href={value}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm font-medium text-primary underline truncate block"
                     >
                       {value}
-                    </a>
+                    </Link>
                   ) : (
                     <p className="text-sm font-medium">{value}</p>
                   )}

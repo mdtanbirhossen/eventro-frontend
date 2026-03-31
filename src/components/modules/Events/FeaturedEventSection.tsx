@@ -31,7 +31,7 @@ function FeaturedSkeleton() {
   );
 }
 
-export default function FeaturedEventSection() {
+export default function FeaturedEventSection({ className }: { className?: string }) {
   const { data, isLoading, isError } = useFeaturedPublicEvent();
   console.log(data)
   if (isLoading) return <FeaturedSkeleton />;
@@ -40,7 +40,7 @@ export default function FeaturedEventSection() {
   const event = data?.data;
   console.log(event)
   return (
-    <div className="relative rounded-2xl overflow-hidden border bg-card group">
+    <div className={`relative rounded-2xl overflow-hidden border bg-card group ${className}`}>
       {/* Banner */}
       <div className="relative h-72 bg-muted overflow-hidden">
         {event?.banner ? (
@@ -88,11 +88,11 @@ export default function FeaturedEventSection() {
             <CalendarDays className="h-4 w-4 shrink-0" />
             {event?.date
               ? new Date(event?.date).toLocaleDateString("en-US", {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })
               : "Date not available"}{" "}
             {event?.time ? `· ${event?.time}` : ""}
           </span>
@@ -108,18 +108,17 @@ export default function FeaturedEventSection() {
             <Banknote className="h-4 w-4 shrink-0" />
             {event?.feeType === EventFeeType.FREE
               ? "Free"
-              : `${event?.currency ?? ""} ${
-                  event?.registrationFee
-                    ? parseFloat(event?.registrationFee)?.toLocaleString()
-                    : "0"
-                }`}
+              : `${event?.currency ?? ""} ${event?.registrationFee
+                ? parseFloat(event?.registrationFee)?.toLocaleString()
+                : "0"
+              }`}
           </span>
         </div>
 
         {/* CTA */}
         <div className="flex items-center gap-3 pt-1">
           <Button asChild>
-            <Link href={`/events/${event?.slug ?? ""}`} className="gap-2">
+            <Link href={`/events/${event?.id ?? ""}`} className="gap-2">
               View Event
               <ArrowRight className="h-4 w-4" />
             </Link>

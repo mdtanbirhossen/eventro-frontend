@@ -34,7 +34,8 @@ import { logoutUser } from "@/services/auth.services"
 import { useAuth } from "@/context/AuthContext"
 import { useRouter } from "next/navigation"
 
-export function NavUser({ user }: { user: User }) {
+export function NavUser() {
+    const { user } = useAuth()
     const router = useRouter()
     const { isMobile } = useSidebar()
     const { logout } = useAuth()

@@ -2,7 +2,8 @@
 
 import { setTokenInCookies } from "@/lib/tokenUtils";
 import { cookies } from "next/headers";
-
+import jwt from "jsonwebtoken";
+import { JwtUserPayload } from "@/types/auth.types";
 const BASE_API_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 if (!BASE_API_URL) {
@@ -99,6 +100,23 @@ export async function getUserInfo() {
         return data;
     } catch (error) {
         console.error("Error fetching user info:", error);
+        return null;
+    }
+}
+
+export async function getUserFromToken(): Promise<JwtUserPayload | null> {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("accessToken")?.value;
+
+    if (!token) return null;
+
+    try {
+        return jwt.verify(
+            token,
+            process.env.JWT_ACCESS_SECRET as string,
+        ) as JwtUserPayload;
+    } catch (err) {
+        // console.log("JWT invalid or expired:", err);
         return null;
     }
 }

@@ -22,13 +22,12 @@ import { Route } from "@/types/routes.type";
 import { NavUser } from "./nav-user";
 import { User } from "@/types/user.types";
 import { userRoutes } from "@/routes/userRoutes";
+import { JwtUserPayload } from "@/types/auth.types";
+type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
+  user: JwtUserPayload;
+};
 
-export function AppSidebar({
-  user,
-  ...props
-}: {
-  user: User & React.ComponentProps<typeof Sidebar>;
-}) {
+export function AppSidebar({ user, ...props }: AppSidebarProps) {
   let routes: Route[] = [];
 
   switch (user.role) {
@@ -38,25 +37,34 @@ export function AppSidebar({
     case Roles.user:
       routes = userRoutes;
       break;
-
     default:
       routes = [];
-      break;
   }
 
   return (
     <Sidebar {...props}>
       <SidebarContent>
-        <SidebarHeader><Image src={'/logo/eventro-no-bg.png'} width={150} height={50} alt="" /></SidebarHeader>
-        {publicRoutes.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+        <SidebarHeader>
+          <Image
+            src={"/logo/eventro-no-bg.png"}
+            width={150}
+            height={50}
+            alt="Eventro"
+          />
+        </SidebarHeader>
+
+        {publicRoutes.map((group) => (
+          <SidebarGroup key={group.title}>
+            <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
+                {group.items.map((item) => (
+                  <SidebarMenuItem key={item.url}>
                     <SidebarMenuButton asChild>
-                      <Link href={item.url}><item.icon /><span>{item.title}</span></Link>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -64,15 +72,19 @@ export function AppSidebar({
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
-        {routes.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+
+        {routes.map((group) => (
+          <SidebarGroup key={group.title}>
+            <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
+                {group.items.map((item) => (
+                  <SidebarMenuItem key={item.url}>
                     <SidebarMenuButton asChild>
-                      <Link href={item.url}><item.icon /><span>{item.title}</span></Link>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -81,10 +93,11 @@ export function AppSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter>
 
-        <NavUser user={user} />
+      <SidebarFooter>
+        <NavUser />
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );
