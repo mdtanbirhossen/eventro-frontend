@@ -7,6 +7,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import PaymentInvoice from "@/components/modules/Admin/Payment/Paymentinvoice";
 import { usePaymentByTransactionId } from "@/hooks/paymentPage.hooks";
+import { useAuth } from "@/context/AuthContext";
 
 function PageSkeleton() {
   return (
@@ -19,6 +20,8 @@ function PageSkeleton() {
 
 export default function PaymentSuccessPage() {
   const searchParams = useSearchParams();
+  const { user } = useAuth()
+  const isAdmin = user!.role === "ADMIN"
 
   // SSLCommerz sends tran_id as a query param on redirect
   const tran_id = searchParams.get("tran_id") ?? "";
@@ -33,7 +36,7 @@ export default function PaymentSuccessPage() {
           No transaction ID found. Please check your payments dashboard.
         </p>
         <Button asChild variant="outline">
-          <Link href="/dashboard/payments">View Payments</Link>
+          <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-payments`}>View Payments</Link>
         </Button>
       </div>
     );
@@ -52,7 +55,7 @@ export default function PaymentSuccessPage() {
             Retry
           </Button>
           <Button asChild>
-            <Link href="/dashboard/payments">View Payments</Link>
+            <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-payments`}>View Payments</Link>
           </Button>
         </div>
       </div>
@@ -80,7 +83,7 @@ export default function PaymentSuccessPage() {
       {/* Quick links */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Button asChild variant="outline" className="gap-2">
-          <Link href="/dashboard/joined-events">
+          <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-joined-events`}>
             My Joined Events <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>

@@ -8,7 +8,11 @@ const RegisterPage = async ({ searchParams }: RegisterParams) => {
   const params = await searchParams;
   const redirectPath = params.redirect;
 
-  return <RegisterForm redirectPath={redirectPath} />;
+  return (
+    <main className="w-full">
+      <RegisterForm redirectPath={redirectPath} />
+    </main>
+  );
 };
 
 export default RegisterPage;

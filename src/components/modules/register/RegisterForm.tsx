@@ -19,11 +19,12 @@ import { useAuth } from "@/context/AuthContext";
 import { IRegisterPayload, registerZodSchema } from "@/zod/auth.validation";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import "./RegisterForm.css";
 
 interface RegisterFormProps {
   redirectPath?: string;
@@ -35,6 +36,11 @@ const RegisterForm = ({ redirectPath }: RegisterFormProps) => {
 
   const [serverError, setServerError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(false);
+
+  useEffect(() => {
+    setIsAnimated(true);
+  }, []);
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: (payload: IRegisterPayload) => registerAction(payload),
@@ -73,114 +79,161 @@ const RegisterForm = ({ redirectPath }: RegisterFormProps) => {
   });
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-md">
-      <CardHeader className="text-center">
-        <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
-        <CardDescription>
-          Sign up to explore and book amazing events on Eventro.
-        </CardDescription>
-      </CardHeader>
+    <div className="register-container">
+      {/* Animated Background Elements */}
+      <div className="gradient-orb orb-1"></div>
+      <div className="gradient-orb orb-2"></div>
+      <div className="gradient-orb orb-3"></div>
 
-      <CardContent>
-        <form
-          method="POST"
-          action="#"
-          noValidate
-          onSubmit={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            form.handleSubmit();
-          }}
-          className="space-y-4"
-        >
-          <form.Field
-            name="name"
-            validators={{ onChange: registerZodSchema.shape.name }}
+      {/* Grid Background */}
+      <div className="grid-background"></div>
+
+      {/* Main Card */}
+      <Card className={`register-card ${isAnimated ? "fade-in-up" : ""}`}>
+        <div className="card-top-decoration"></div>
+
+        <CardHeader className="text-center pb-6">
+          <div className="logo-container">
+            <div className="logo-badge">
+              <Sparkles className="logo-icon" />
+            </div>
+          </div>
+
+          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mt-4">
+            Create Account
+          </CardTitle>
+
+          <CardDescription className="text-base mt-2 text-slate-600">
+            Sign up to explore and book amazing events on Eventro
+          </CardDescription>
+        </CardHeader>
+
+        <CardContent className="pt-0">
+          <form
+            method="POST"
+            action="#"
+            noValidate
+            onSubmit={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              form.handleSubmit();
+            }}
+            className="space-y-5"
           >
-            {(field) => (
-              <AppField
-                field={field}
-                label="Full Name"
-                type="text"
-                placeholder="Enter your name"
-              />
+            {/* Name */}
+            <form.Field
+              name="name"
+              validators={{ onChange: registerZodSchema.shape.name }}
+            >
+              {(field) => (
+                <div className="field-wrapper">
+                  <AppField
+                    field={field}
+                    label="Full Name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    className="field-input"
+                  />
+                </div>
+              )}
+            </form.Field>
+
+            {/* Email */}
+            <form.Field
+              name="email"
+              validators={{ onChange: registerZodSchema.shape.email }}
+            >
+              {(field) => (
+                <div className="field-wrapper">
+                  <AppField
+                    field={field}
+                    label="Email Address"
+                    type="email"
+                    placeholder="your@email.com"
+                    className="field-input"
+                  />
+                </div>
+              )}
+            </form.Field>
+
+            {/* Password */}
+            <form.Field
+              name="password"
+              validators={{ onChange: registerZodSchema.shape.password }}
+            >
+              {(field) => (
+                <div className="field-wrapper">
+                  <AppField
+                    field={field}
+                    label="Password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    className="field-input"
+                    append={
+                      <Button
+                        type="button"
+                        onClick={() => setShowPassword((value) => !value)}
+                        variant="ghost"
+                        size="icon"
+                        className="password-toggle"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="size-4" aria-hidden="true" />
+                        ) : (
+                          <Eye className="size-4" aria-hidden="true" />
+                        )}
+                      </Button>
+                    }
+                  />
+                </div>
+              )}
+            </form.Field>
+
+            {/* Error */}
+            {serverError && (
+              <div className="error-alert-wrapper">
+                <Alert variant={"destructive"} className="error-alert">
+                  <AlertDescription>{serverError}</AlertDescription>
+                </Alert>
+              </div>
             )}
-          </form.Field>
 
-          <form.Field
-            name="email"
-            validators={{ onChange: registerZodSchema.shape.email }}
-          >
-            {(field) => (
-              <AppField
-                field={field}
-                label="Email"
-                type="email"
-                placeholder="Enter your email"
-              />
-            )}
-          </form.Field>
-
-          <form.Field
-            name="password"
-            validators={{ onChange: registerZodSchema.shape.password }}
-          >
-            {(field) => (
-              <AppField
-                field={field}
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                append={
-                  <Button
-                    type="button"
-                    onClick={() => setShowPassword((value) => !value)}
-                    variant="ghost"
-                    size="icon"
+            {/* Submit Button */}
+            <form.Subscribe
+              selector={(s) => [s.canSubmit, s.isSubmitting] as const}
+            >
+              {([canSubmit, isSubmitting]) => (
+                <div className="button-wrapper">
+                  <AppSubmitButton
+                    isPending={isSubmitting || isPending}
+                    pendingLabel="Creating Account..."
+                    disabled={!canSubmit}
+                    className="submit-button"
                   >
-                    {showPassword ? (
-                      <EyeOff className="size-4" aria-hidden="true" />
-                    ) : (
-                      <Eye className="size-4" aria-hidden="true" />
-                    )}
-                  </Button>
-                }
-              />
-            )}
-          </form.Field>
+                    <span>Create Account</span>
+                    <ArrowRight className="button-icon" />
+                  </AppSubmitButton>
+                </div>
+              )}
+            </form.Subscribe>
 
-          {serverError && (
-            <Alert variant={"destructive"}>
-              <AlertDescription>{serverError}</AlertDescription>
-            </Alert>
-          )}
+            {/* Divider */}
+            <div className="divider">
+              <span>Already registered?</span>
+            </div>
+          </form>
+        </CardContent>
 
-          <form.Subscribe selector={(s) => [s.canSubmit, s.isSubmitting] as const}>
-            {([canSubmit, isSubmitting]) => (
-              <AppSubmitButton
-                isPending={isSubmitting || isPending}
-                pendingLabel="Creating Account..."
-                disabled={!canSubmit}
-              >
-                Register
-              </AppSubmitButton>
-            )}
-          </form.Subscribe>
-        </form>
-      </CardContent>
-
-      <CardFooter className="justify-center border-t pt-4">
-        <p className="text-sm text-muted-foreground">
-          Already have an account?{" "}
-          <Link
-            href="/login"
-            className="text-primary font-medium hover:underline underline-offset-4"
-          >
-            Login
-          </Link>
-        </p>
-      </CardFooter>
-    </Card>
+        <CardFooter className="flex flex-col items-center gap-4 border-t ">
+          <p className="text-sm text-slate-600 mt-4">
+            Already have an account?{" "}
+            <Link href="/login" className="login-link">
+              Login now
+            </Link>
+          </p>
+        </CardFooter>
+      </Card>
+    </div>
   );
 };
 

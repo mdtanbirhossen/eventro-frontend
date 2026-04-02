@@ -1,6 +1,5 @@
 import LoginForm from "@/components/modules/login/LoginForm";
 
-
 interface LoginParams {
   searchParams: Promise<{ redirect?: string }>;
 }
@@ -8,8 +7,11 @@ interface LoginParams {
 const LoginPage = async ({ searchParams }: LoginParams) => {
   const params = await searchParams;
   const redirectPath = params.redirect;
+
   return (
-    <LoginForm redirectPath={redirectPath} />
+    <main className="w-full">
+      <LoginForm redirectPath={redirectPath} />
+    </main>
   )
 }
 

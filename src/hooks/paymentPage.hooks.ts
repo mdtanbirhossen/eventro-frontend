@@ -12,6 +12,7 @@ export function usePaymentByTransactionId(tran_id: string) {
     queryFn: async () => {
       // Try direct endpoint first
       const res = await getPaymentByTransactionIdAction(tran_id);
+      console.log(res)
       if (res.success) return res.data as IPaymentDetail;
 
       // Fallback: fetch all and find by transactionId

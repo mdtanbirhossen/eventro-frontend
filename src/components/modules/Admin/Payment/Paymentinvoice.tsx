@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { IPaymentDetail } from "@/types/paymentPages.types";
+import { useAuth } from "@/context/AuthContext";
 
 // ─── Status config ─────────────────────────────────────────────
 
@@ -84,6 +85,8 @@ export default function PaymentInvoice({
   showActions = true,
 }: PaymentInvoiceProps) {
   const config = statusConfig[payment.status];
+  const { user } = useAuth()
+  const isAdmin = user!.role === "ADMIN"
   const Icon = config.icon;
 
   const rows: { label: string; value: React.ReactNode }[] = [
@@ -149,14 +152,13 @@ export default function PaymentInvoice({
       <div className={`px-8 py-6 ${config.bgClass}`}>
         <div className="flex items-center gap-3">
           <div
-            className={`rounded-full p-3 ${
-              payment.status === PaymentStatus.PAID
+            className={`rounded-full p-3 ${payment.status === PaymentStatus.PAID
                 ? "bg-emerald-500"
                 : payment.status === PaymentStatus.FAILED ||
                   payment.status === PaymentStatus.CANCELLED
-                ? "bg-red-500"
-                : "bg-amber-500"
-            }`}
+                  ? "bg-red-500"
+                  : "bg-amber-500"
+              }`}
           >
             <Icon className="h-6 w-6 text-white" />
           </div>
@@ -221,8 +223,8 @@ export default function PaymentInvoice({
       {/* Billed to */}
       <div className="px-8 py-4 border-t bg-muted/20">
         <p className="text-xs text-muted-foreground mb-1">Billed to</p>
-        <p className="text-sm font-medium">{payment.user.name}</p>
-        <p className="text-xs text-muted-foreground">{payment.user.email}</p>
+        <p className="text-sm font-medium">{payment?.user?.name}</p>
+        <p className="text-xs text-muted-foreground">{payment?.user?.email}</p>
       </div>
 
       {/* Actions */}
@@ -240,13 +242,13 @@ export default function PaymentInvoice({
             </Button>
           )}
           <Button asChild size="sm" className="gap-2 flex-1">
-            <Link href={`/events/${payment.event.slug}`}>
+            <Link href={`/events/${payment.event.id}`}>
               View Event
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
           <Button asChild size="sm" variant="outline" className="gap-2 flex-1">
-            <Link href="/dashboard/payments">My Payments</Link>
+            <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-payments`}>My Payments</Link>
           </Button>
         </div>
       )}

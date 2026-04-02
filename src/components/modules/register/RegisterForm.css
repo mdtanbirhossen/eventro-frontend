@@ -1,0 +1,532 @@
+/* RegisterForm.css - Eventro Decorated Register Page Styles */
+
+/* ============================================
+   CSS Variables & Theme Configuration
+   ============================================ */
+:root {
+    --primary-gradient: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+    --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
+    --accent-color: #7c3aed;
+    --accent-pink: #db2777;
+    --accent-cyan: #06b6d4;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --bg-light: #f8fafc;
+    --border-color: #e2e8f0;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+}
+
+/* ============================================
+   Register Container & Background Setup
+   ============================================ */
+.register-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e0f2fe 100%);
+    padding: 20px;
+}
+
+/* Grid Background Pattern */
+.grid-background {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(0deg, transparent 24%, rgba(120, 58, 237, 0.02) 25%, rgba(120, 58, 237, 0.02) 26%, transparent 27%, transparent 74%, rgba(120, 58, 237, 0.02) 75%, rgba(120, 58, 237, 0.02) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(120, 58, 237, 0.02) 25%, rgba(120, 58, 237, 0.02) 26%, transparent 27%, transparent 74%, rgba(120, 58, 237, 0.02) 75%, rgba(120, 58, 237, 0.02) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================
+   Animated Gradient Orbs
+   ============================================ */
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+    top: -100px;
+    right: -100px;
+}
+
+.orb-2 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
+    bottom: 100px;
+    left: -50px;
+    animation-delay: 5s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #ec4899 0%, #06b6d4 100%);
+    bottom: -50px;
+    right: 50px;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px);
+    }
+
+    25% {
+        transform: translate(30px, -30px);
+    }
+
+    50% {
+        transform: translate(-20px, 20px);
+    }
+
+    75% {
+        transform: translate(10px, 10px);
+    }
+}
+
+/* ============================================
+   Register Card Styling
+   ============================================ */
+.register-card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 20px 40px rgba(120, 58, 237, 0.1),
+        0 0 60px rgba(6, 182, 212, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.register-card:hover {
+    box-shadow:
+        0 30px 60px rgba(120, 58, 237, 0.15),
+        0 0 80px rgba(6, 182, 212, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+/* Decorative Top Border */
+.card-top-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-gradient);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+    }
+
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 30px rgba(219, 39, 119, 0.5);
+    }
+}
+
+/* ============================================
+   Logo & Header Styling
+   ============================================ */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    animation: logo-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.logo-badge {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-badge::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shine 3s infinite;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    color: white;
+    z-index: 1;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes logo-pop {
+    0% {
+        transform: scale(0) rotateZ(-180deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotateZ(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   Form Fields Styling
+   ============================================ */
+.field-wrapper {
+    animation: slide-in-up 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.field-wrapper:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.field-wrapper:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.field-wrapper:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes slide-in-up {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.field-input {
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.field-input:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
+    background: rgba(255, 255, 255, 1);
+}
+
+.password-toggle {
+    color: var(--text-secondary) !important;
+    transition: all 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: var(--accent-color) !important;
+    background: rgba(124, 58, 237, 0.05) !important;
+}
+
+/* ============================================
+   Error Alert Styling
+   ============================================ */
+.error-alert-wrapper {
+    animation: slide-in-down 0.4s ease-out;
+}
+
+@keyframes slide-in-down {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.error-alert {
+    border: 2px solid var(--error-color) !important;
+    border-radius: 12px !important;
+    background: rgba(239, 68, 68, 0.05) !important;
+    padding: 12px 14px !important;
+}
+
+/* ============================================
+   Submit Button Styling
+   ============================================ */
+.button-wrapper {
+    margin-top: 24px;
+    animation: slide-in-up 0.6s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.submit-button {
+    width: 100% !important;
+    height: 50px !important;
+    border-radius: 12px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    background: var(--primary-gradient) !important;
+    color: white !important;
+    border: 0 !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    cursor: pointer;
+}
+
+.submit-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.submit-button:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.submit-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4);
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ============================================
+   Divider Styling
+   ============================================ */
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    animation: slide-in-up 0.6s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-color), transparent);
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+    background: linear-gradient(90deg, transparent, var(--border-color));
+}
+
+/* Signup Link */
+.login-link {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.login-link::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-gradient);
+    transition: width 0.3s ease;
+}
+
+.login-link:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   Entry Animation
+   ============================================ */
+.fade-in-up {
+    animation: card-fade-in-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes card-fade-in-up {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 480px) {
+    .register-container {
+        padding: 15px;
+    }
+
+    .register-card {
+        max-width: 100%;
+        border-radius: 20px;
+    }
+
+    .gradient-orb {
+        width: 200px !important;
+        height: 200px !important;
+        filter: blur(60px);
+    }
+
+    .logo-badge {
+        width: 56px;
+        height: 56px;
+    }
+
+    .logo-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .submit-button {
+        height: 45px !important;
+        font-size: 15px !important;
+    }
+
+    .divider {
+        font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+        width: 25%;
+    }
+}
+
+/* ============================================
+   Dark Mode Support
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --bg-light: #1e293b;
+        --border-color: #334155;
+    }
+
+    .register-container {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #172554 100%);
+    }
+
+    .register-card {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            0 0 60px rgba(6, 182, 212, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .field-input {
+        background: rgba(15, 23, 42, 0.5) !important;
+        color: var(--text-primary);
+    }
+
+    .field-input:focus {
+        background: rgba(30, 41, 59, 0.8) !important;
+    }
+}
