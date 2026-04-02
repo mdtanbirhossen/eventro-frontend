@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import EventCard from "../../Events/EventCard/EventCard";
-import { EventStatus } from "@/types/enums";
+import { EventStatus, EventVisibility } from "@/types/enums";
 
 function EventCardSkeleton() {
   return (
@@ -31,6 +31,7 @@ export default function LatestEventsSection() {
     page: 1,
     limit: 8,
     status: EventStatus.PUBLISHED,
+    visibility: EventVisibility.PUBLIC,
     sortBy: "createdAt",
     sortOrder: "desc",
   });
