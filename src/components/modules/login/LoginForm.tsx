@@ -84,7 +84,7 @@ const LoginForm = ({ redirectPath }: LoginFormProps) => {
             </div>
           </div>
 
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mt-4">
+          <CardTitle className="text-3xl font-bold bg-linear-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mt-4">
             Welcome to Eventro
           </CardTitle>
           <CardDescription className="text-base mt-2 text-slate-600">

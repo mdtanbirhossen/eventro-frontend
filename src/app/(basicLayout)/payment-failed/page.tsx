@@ -21,7 +21,8 @@ function PageSkeleton() {
 
 export default function PaymentFailedPage() {
     const { user } = useAuth()
-    const isAdmin = user!.role === "ADMIN"
+    const isAdmin = user?.role === "ADMIN";
+    
     const searchParams = useSearchParams();
     const tran_id = searchParams.get("tran_id") ?? "";
 
@@ -111,7 +112,7 @@ export default function PaymentFailedPage() {
                         </Link>
                     </Button>
                     <Button asChild variant="outline">
-                        <Link href={`/${isAdmin?"admin":"dashboard"}/my-payments`}>My Payments</Link>
+                        <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-payments`}>My Payments</Link>
                     </Button>
                 </div>
             </div>

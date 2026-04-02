@@ -86,7 +86,7 @@ export default function PaymentInvoice({
 }: PaymentInvoiceProps) {
   const config = statusConfig[payment.status];
   const { user } = useAuth()
-  const isAdmin = user!.role === "ADMIN"
+  const isAdmin = user?.role === "ADMIN";
   const Icon = config.icon;
 
   const rows: { label: string; value: React.ReactNode }[] = [
@@ -153,11 +153,11 @@ export default function PaymentInvoice({
         <div className="flex items-center gap-3">
           <div
             className={`rounded-full p-3 ${payment.status === PaymentStatus.PAID
-                ? "bg-emerald-500"
-                : payment.status === PaymentStatus.FAILED ||
-                  payment.status === PaymentStatus.CANCELLED
-                  ? "bg-red-500"
-                  : "bg-amber-500"
+              ? "bg-emerald-500"
+              : payment.status === PaymentStatus.FAILED ||
+                payment.status === PaymentStatus.CANCELLED
+                ? "bg-red-500"
+                : "bg-amber-500"
               }`}
           >
             <Icon className="h-6 w-6 text-white" />

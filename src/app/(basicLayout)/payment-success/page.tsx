@@ -21,7 +21,7 @@ function PageSkeleton() {
 export default function PaymentSuccessPage() {
   const searchParams = useSearchParams();
   const { user } = useAuth()
-  const isAdmin = user!.role === "ADMIN"
+  const isAdmin = user?.role === "ADMIN";
 
   // SSLCommerz sends tran_id as a query param on redirect
   const tran_id = searchParams.get("tran_id") ?? "";
