@@ -50,28 +50,29 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { SendBulkInvitationsDialog } from "../../BulkInvitations/SendBulkInvitationsDialog";
+import { useAuth } from "@/context/AuthContext";
 
 // ─── Helpers ─────────────────────────────────────────────────
 
 const statusConfig: Record<EventStatus, { label: string; className: string }> =
-  {
-    PUBLISHED: {
-      label: "Published",
-      className: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    },
-    DRAFT: {
-      label: "Draft",
-      className: "bg-zinc-100 text-zinc-600 border-zinc-200",
-    },
-    CANCELLED: {
-      label: "Cancelled",
-      className: "bg-red-100 text-red-800 border-red-200",
-    },
-    COMPLETED: {
-      label: "Completed",
-      className: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-  };
+{
+  PUBLISHED: {
+    label: "Published",
+    className: "bg-emerald-100 text-emerald-800 border-emerald-200",
+  },
+  DRAFT: {
+    label: "Draft",
+    className: "bg-zinc-100 text-zinc-600 border-zinc-200",
+  },
+  CANCELLED: {
+    label: "Cancelled",
+    className: "bg-red-100 text-red-800 border-red-200",
+  },
+  COMPLETED: {
+    label: "Completed",
+    className: "bg-blue-100 text-blue-800 border-blue-200",
+  },
+};
 
 function StatusBadge({ status }: { status: EventStatus }) {
   const { label, className } = statusConfig[status];
@@ -111,6 +112,8 @@ function EventCard({
   onDelete: (e: IMyEvent) => void;
   onInvite: (e: IMyEvent) => void;
 }) {
+  const { user } = useAuth()
+  const isAdmin = user?.role === "ADMIN";
   return (
     <div className="rounded-xl border bg-card overflow-hidden flex flex-col group hover:shadow-md transition-shadow">
       {/* Banner */}
@@ -157,7 +160,7 @@ function EventCard({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
               <DropdownMenuItem asChild>
-                <Link href={`/dashboard/events/${event.id}/edit`}>
+                <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-events/${event.id}/edit`}>
                   <Pencil className="mr-2 h-4 w-4" />
                   Edit
                 </Link>
@@ -294,6 +297,8 @@ function DeleteEventDialog({
 const LIMIT = 9; // 3-col grid looks best with multiples of 3
 
 export default function MyCreatedEvents() {
+  const { user } = useAuth()
+  const isAdmin = user?.role === "ADMIN";
   const [page, setPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState<"ALL" | EventStatus>("ALL");
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -333,7 +338,7 @@ export default function MyCreatedEvents() {
           </p>
         </div>
         <Button asChild size="sm" className="gap-2">
-          <Link href="/dashboard/my-events/create">
+          <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-events/create`}>
             <Plus className="h-4 w-4" />
             Create Event
           </Link>
@@ -389,7 +394,7 @@ export default function MyCreatedEvents() {
               : "You haven't created any events yet."}
           </p>
           <Button asChild size="sm" variant="outline">
-            <Link href="/dashboard/my-events/create">Create your first event</Link>
+            <Link href={`/${isAdmin ? "admin" : "dashboard"}/my-events/create`}>Create your first event</Link>
           </Button>
         </div>
       ) : (
