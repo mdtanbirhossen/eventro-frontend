@@ -4,6 +4,21 @@ The Next.js frontend for the Eventro event management platform. Supports public 
 
 ---
 
+## Live Demo & Repositories
+
+- **Live Frontend**: [https://eventro-frontend.vercel.app/](https://eventro-frontend.vercel.app/)
+- **Live Backend**: [https://eventro-backend.vercel.app/](https://eventro-backend.vercel.app/)
+- **Frontend Repository**: [https://github.com/mdtanbirhossen/eventro-frontend](https://github.com/mdtanbirhossen/eventro-frontend)
+- **Backend Repository**: [https://github.com/mdtanbirhossen/eventro-backend](https://github.com/mdtanbirhossen/eventro-backend)
+
+### Demo Credentials
+| Role | Email | Password |
+|---|---|---|
+| **Admin** | `admin@gmail.com` | `12345678` |
+| **User** | `user@gmail.com` | `12345678` |
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -18,6 +33,7 @@ The Next.js frontend for the Eventro event management platform. Supports public 
 | Validation | Zod 4 |
 | HTTP Client | Axios |
 | Auth State | Context API + js-cookie |
+| Charts | Recharts |
 | Carousel | Embla Carousel |
 | Notifications | Sonner |
 | Theme | next-themes |
@@ -92,9 +108,13 @@ src/
 │   │   ├── events/
 │   │   │   ├── page.tsx           # Public events listing
 │   │   │   └── [slug]/page.tsx    # Event detail page
-│   │   └── payment/
-│   │       ├── success/page.tsx   # Payment success
-│   │       └── failed/page.tsx    # Payment failed / cancelled
+│   │   ├── payment/
+│   │   │   ├── success/page.tsx   # Payment success
+│   │   │   └── failed/page.tsx    # Payment failed / cancelled
+│   │   ├── about-us/page.tsx      # About Us
+│   │   ├── contact-us/page.tsx    # Contact Info
+│   │   ├── terms/page.tsx         # Terms of Service
+│   │   └── privacy/page.tsx       # Privacy Policy
 │   └── (dashboardLayout)/         # Protected layout
 │       ├── @user/                 # User dashboard routes
 │       │   ├── dashboard/         # User analytics overview
@@ -169,14 +189,23 @@ src/
 
 ## Key Features
 
+### ✨ Recent Upgrades
+- **Global Theme & UI** — Seamless Dark/Light mode support, sticky navigation, and premium modern aesthetics.
+- **Dynamic Landing Page** — Expanded home page with 10+ interactive sections including Statistics, Testimonials, FAQ, Newsletter, and CTA Banners.
+- **Smart AI Recommendations** — Intelligent event suggestion engine on the event detail pages.
+- **Data Visualization Dashboards** — Integrated Recharts providing Bar, Line, and Pie charts for powerful analytics in both Admin and User panels.
+- **Enhanced Authentication** — Demo login capabilities for instant role switching and Social Login integration placeholders.
+- **Complete Architecture** — Comprehensive info pages including About Us, Contact Us, Terms, and Privacy.
+
 ### Public
 - Browse and search all public events with filters (category, fee type, sort)
-- Event detail page with join button, organiser info, and reviews
-- Featured event hero section on landing page
+- Event detail page with join button, organiser info, reviews, related events, and AI recommendations
+- Expanded landing page with 10+ sections (Hero, Featured, Statistics, Testimonials, etc.)
 - Category-based event browsing
+- Clean static pages (About Us, Contact Us, Terms, Privacy)
 
 ### User Dashboard
-- **Analytics overview** — stat cards for events hosted, joined, spent, notifications
+- **Analytics overview** — visual charts (tickets bought, event statuses) and stat cards
 - **My Events** — manage created events with status filter, edit, delete, bulk invite
 - **Joined Events** — track participation status (approved / pending / banned)
 - **Invitations** — accept or decline event invitations
@@ -186,7 +215,7 @@ src/
 - **Create / Edit Event** — full form with banner upload, category, visibility, fee, capacity
 
 ### Admin Panel
-- **Dashboard** — platform-wide stats (users, events, revenue, pending participants)
+- **Dashboard** — comprehensive visual charts (events over time, revenue trends, event types) and platform-wide stats
 - **Events Management** — filter, search, feature/unfeature, force delete
 - **Users & Admins** — view all users, create new admins
 - **Categories** — create, edit, delete event categories
