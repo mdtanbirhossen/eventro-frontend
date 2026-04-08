@@ -31,6 +31,7 @@ import LogoutButton from "../modules/logout/LogoutButton";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/context/AuthContext";
 import { Role } from "@/types/enums";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface MenuItem {
   title: string;
@@ -131,7 +132,8 @@ const Navbar = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
+            <ThemeToggle />
             {userInfo ? (
               <>
                 <ProfileDropdown handleLogout={handleLogout} user={userInfo} />
@@ -164,6 +166,7 @@ const Navbar = ({
               />
             </Link>
             <div className="flex gap-2 items-center justify-center">
+              <ThemeToggle />
               {userInfo && <ProfileDropdown handleLogout={handleLogout} user={userInfo} />}
               <Sheet>
                 <SheetTrigger asChild>
