@@ -35,6 +35,7 @@ import { IMyEvent, IMyInvitation, IMyJoinedEvent, IMyPayment } from "@/types/use
 import { INotification } from "@/types/notification.types";
 import { useMyEvents, useMyInvitations, useMyJoinedEvents, useMyPayments } from "@/hooks/userDashboard.hooks";
 import { useMyNotifications } from "@/hooks/notification.hooks";
+import { UserCharts } from "./UserCharts";
 
 // ─── Helpers ──────────────────────────────────────────────────
 
@@ -407,6 +408,9 @@ export default function UserDashboard() {
           icon={Star} iconBg="bg-amber-50" iconColor="text-amber-500"
           loading={eventsLoading} />
       </div>
+
+      {/* Dashboard Charts */}
+      <UserCharts />
 
       {/* Pending invitations alert */}
       <PendingInvitations invitations={invitations} loading={inviteLoading} />
