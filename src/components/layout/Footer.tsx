@@ -104,6 +104,16 @@ const Footer = async () => {
                                 FAQ
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/terms" className="hover:text-white dark:hover:text-foreground transition">
+                                Terms
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/privacy" className="hover:text-white dark:hover:text-foreground transition">
+                                Privacy
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

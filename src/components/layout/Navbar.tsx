@@ -84,7 +84,18 @@ const Navbar = ({
       title: "Contact Us",
       url: "/contact-us",
     },
-
+    {
+      title: "FAQ",
+      url: "/faq",
+    },
+    {
+      title: "Terms",
+      url: "/terms",
+    },
+    {
+      title: "Privacy",
+      url: "/privacy",
+    },
   ],
   auth = {
     login: { title: "Login", url: "/login" },
@@ -111,7 +122,7 @@ const Navbar = ({
     router.refresh();
   };
   return (
-    <section className={cn("py-4 px-2 md:px-5", className)}>
+    <section className={cn("sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b py-4 px-2 md:px-5", className)}>
       <div className="">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
