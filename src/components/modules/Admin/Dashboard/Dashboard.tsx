@@ -15,6 +15,7 @@ import {
 import { EventStatus, PaymentStatus } from "@/types/enums";
 import { IEvent } from "@/types/event.types";
 import { IPayment } from "@/types/payment.types";
+import { AdminCharts } from "./AdminCharts";
 
 // ─── Stat Card ───────────────────────────────────────────────
 
@@ -309,6 +310,9 @@ export default function Dashboard() {
           loading={statsLoading}
         />
       </div>
+
+      {/* Dashboard Charts */}
+      <AdminCharts />
 
       {/* Recent data — side by side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
