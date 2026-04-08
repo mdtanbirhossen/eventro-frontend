@@ -12,6 +12,7 @@ import {
   Banknote,
   Tag,
   Star,
+  ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -107,7 +108,7 @@ export default function EventCard({ event }: EventCardProps) {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-2 border-t mt-1">
+        <div className="flex items-center justify-between pt-2 border-t mt-1 mb-2">
           <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground">
             {event.visibility === EventVisibility.PUBLIC ? (
               <><Globe className="h-3 w-3" /> Public</>
@@ -118,6 +119,12 @@ export default function EventCard({ event }: EventCardProps) {
           <span className="text-[11px] text-muted-foreground truncate max-w-30">
             by {event.owner.name}
           </span>
+        </div>
+        
+        <div className="flex justify-center w-full mt-2">
+          <div className="flex w-full items-center justify-center gap-2 rounded-lg border bg-background px-3 py-2 text-xs font-semibold shadow-sm transition-colors hover:bg-muted group-hover:bg-primary group-hover:text-primary-foreground">
+            View Details <ArrowRight className="h-3 w-3" />
+          </div>
         </div>
       </div>
     </Link>

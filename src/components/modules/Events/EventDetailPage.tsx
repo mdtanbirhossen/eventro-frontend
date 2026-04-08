@@ -47,6 +47,7 @@ import {
   Clock,
 } from "lucide-react";
 import Link from "next/link";
+import RelatedEvents from "./RelatedEvents";
 
 // ─── Star Rating ──────────────────────────────────────────────
 
@@ -590,6 +591,11 @@ export default function EventDetailPage() {
           </div>
         )}
       </div>
+      
+      {/* AI Recommendation / Related Events */}
+      {event.categoryId && (
+        <RelatedEvents categoryId={event.categoryId} currentEventId={event.id} />
+      )}
     </div>
   );
 }
